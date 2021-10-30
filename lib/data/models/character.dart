@@ -3,7 +3,7 @@ class Character {
   late String name;
   late String nickname;
   late String realName;
-  late DateTime birthday;
+  late String birthday;
   late String imageUrl;
   late String status;
   late String series;
@@ -20,8 +20,9 @@ class Character {
     imageUrl = json['img'];
     status = json['status'];
     series = json['category'];
-    occupations = json['occupation'];
-    seasonsApperance = json['appearance'];
-    betterCallSaulApperance = json['better_call_saul_appearance'];
+    occupations = List<String>.from(json['occupation'].map((x) => x));
+    seasonsApperance = List<int>.from(json['appearance'].map((x) => x));
+    betterCallSaulApperance =
+        List<int>.from(json['better_call_saul_appearance'].map((x) => x));
   }
 }

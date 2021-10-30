@@ -16,7 +16,7 @@ class CharacterService {
     dio = Dio(options);
   }
 
-  Future<List<Map<String, dynamic>>> get allCharacters async {
+  Future<List<dynamic>> get allCharacters async {
     try {
       Response response = await dio.get(charactersPath);
       print(response.data.toString());
