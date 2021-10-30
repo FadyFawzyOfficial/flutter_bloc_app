@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_app/business_logic/cubit/characters_cubit.dart';
-import 'package:flutter_bloc_app/constants/app_colors.dart';
 
+import '../../business_logic/cubit/characters_cubit.dart';
+import '../../constants/app_colors.dart';
+import '../../constants/app_widgets.dart';
 import '../../data/models/character.dart';
+import '../widgets/characters_grid.dart';
 
 class CharactersScreen extends StatefulWidget {
   const CharactersScreen({Key? key}) : super(key: key);
@@ -24,6 +26,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('CharactersScreen Build');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.yellow,
@@ -36,22 +39,9 @@ class _CharactersScreenState extends State<CharactersScreen> {
         builder: (context, state) {
           if (state is CharactersLoaded) {
             allCharacters = state.characters;
-            return GridView.builder(
-              itemCount: allCharacters.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 2 / 3,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              itemBuilder: (context, index) => Container(),
-            );
+            return CharactersGrid(allCharacters: allCharacters);
           } else {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: AppColors.yellow,
-              ),
-            );
+            return AppWedgets.centerLoading;
           }
         },
       ),
