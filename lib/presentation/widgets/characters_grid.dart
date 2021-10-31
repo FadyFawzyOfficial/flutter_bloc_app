@@ -5,9 +5,8 @@ import '../../data/models/character.dart';
 import 'character_item.dart';
 
 class CharactersGrid extends StatelessWidget {
-  final List<Character> allCharacters;
-  const CharactersGrid({Key? key, required this.allCharacters})
-      : super(key: key);
+  final List<Character> characters;
+  const CharactersGrid({Key? key, required this.characters}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class CharactersGrid extends StatelessWidget {
       color: AppColors.grey,
       child: GridView.builder(
         padding: const EdgeInsets.all(8),
-        itemCount: allCharacters.length,
+        itemCount: characters.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 2 / 3,
@@ -24,7 +23,7 @@ class CharactersGrid extends StatelessWidget {
           mainAxisSpacing: 8,
         ),
         itemBuilder: (context, index) => CharacterItem(
-          character: allCharacters[index],
+          character: characters[index],
         ),
       ),
     );
